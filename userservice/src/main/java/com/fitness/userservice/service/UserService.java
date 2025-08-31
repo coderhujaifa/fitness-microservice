@@ -5,12 +5,14 @@ import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.models.User;
 import com.fitness.userservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import javax.management.RuntimeErrorException;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository repository;
@@ -58,4 +60,8 @@ public class UserService {
         return userResponse;
     }
 
+    public Boolean existByUserId(String userId) {
+        log.info("calling User Service foe {}", userId);
+        return repository.existsById(userId);
+    }
 }
