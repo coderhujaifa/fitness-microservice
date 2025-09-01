@@ -18,6 +18,11 @@ spring:
         spring.json.value.default.type: com.fitness.aiservice.model.Activity
         spring.json.trusted.packages: "*"
 
+gemini:
+  api:
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+    key: AIzaSyAid7dS8v0KA-Fl3Djb5KRe_FByHU-XHbk
+
 kafka:
   topic:
     name: activity-events
