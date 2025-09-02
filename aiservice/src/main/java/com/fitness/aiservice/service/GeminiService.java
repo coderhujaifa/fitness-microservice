@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Service
-
 public class GeminiService {
 
     private final WebClient webClient;
+
+    @Value("${gemini.api.base-url}")
+    private String geminiBaseUrl;
 
     @Value("${gemini.api.url}")
     private String geminiApiUrl;
@@ -20,25 +21,30 @@ public class GeminiService {
     private String geminiApiKey;
 
     public GeminiService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.build();
+
+        this.webClient = webClientBuilder.baseUrl("https://generativelanguage.googleapis.com").build();
     }
 
     public String getRecommendation(String details) {
-        Map<String, Object>  requestBody = Map.of(
+        Map<String, Object> requestBody = Map.of(
                 "contents", new Object[]{
-                        Map.of("parts",new Object[]{
+                        Map.of("parts", new Object[]{
                                 Map.of("text", details)
                         })
                 }
         );
+
         String response = webClient.post()
-                .uri(geminiApiUrl)
-                .header("Content-Type","application/json")
-                .header("X-good-api-key", geminiApiKey)
+                .uri(uriBuilder -> uriBuilder
+                        .path(geminiApiUrl)
+                        .queryParam("key", geminiApiKey)
+                        .build())
+                .header("Content-Type", "application/json")
                 .bodyValue(requestBody)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+
         return response;
     }
 }

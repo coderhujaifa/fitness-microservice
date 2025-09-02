@@ -1,5 +1,6 @@
 package com.fitness.aiservice.service;
 
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fitness.aiservice.model.Activity;
@@ -8,9 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,75 +22,50 @@ public class ActivityAIService {
 
     public Recommendation generateRecommendation(Activity activity) {
         String prompt = createPromptForActivity(activity);
-        String aiResponse = geminiService.getAnswer(prompt);
+        String aiResponse = geminiService.getRecommendation(prompt);
         log.info("RESPONSE FROM AI: {} ", aiResponse);
-        return processAiResponse(activity, aiResponse);
+        return processAIResponse(activity, aiResponse);
     }
 
-    private Recommendation processAiResponse(Activity activity, String aiResponse) {
-        try {
+    private Recommendation processAIResponse(Activity activity, String aiResponse) {
+        try{
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(aiResponse);
-
             JsonNode textNode = rootNode.path("candidates")
                     .get(0)
                     .path("content")
-                    .path("parts")
+                    .get("parts")
                     .get(0)
                     .path("text");
 
             String jsonContent = textNode.asText()
                     .replaceAll("```json\\n","")
-                    .replaceAll("\\n```", "")
+                    .replaceAll("\\n```","")
                     .trim();
 
-//            log.info("PARSED RESPONSE FROM AI: {} ", jsonContent);
+//            log.info("RESPONSE FROM CLEANED AI: {} ", jsonContent);
 
             JsonNode analysisJson = mapper.readTree(jsonContent);
             JsonNode analysisNode = analysisJson.path("analysis");
-
             StringBuilder fullAnalysis = new StringBuilder();
-            addAnalysisSection(fullAnalysis, analysisNode, "overall", "Overall:");
-            addAnalysisSection(fullAnalysis, analysisNode, "pace", "Pace:");
-            addAnalysisSection(fullAnalysis, analysisNode, "heartRate", "Heart Rate:");
-            addAnalysisSection(fullAnalysis, analysisNode, "caloriesBurned", "Calories:");
+            addAnalysisSection(fullAnalysis,analysisNode, "overall","overall");
+            addAnalysisSection(fullAnalysis,analysisNode, "pace","Pace");
+            addAnalysisSection(fullAnalysis,analysisNode, "heartRate","Heart Rate");
+            addAnalysisSection(fullAnalysis,analysisNode, "caloriesBurned","Calories");
+            addAnalysisSection(fullAnalysis,analysisNode, "caloriesBurned","Calories");
 
-            List<String> improvements = extractImprovements(analysisJson.path("improvements"));
+            List<String> improvement = extractImprovement(analysisJson.path("improvements"));
             List<String> suggestions = extractSuggestions(analysisJson.path("suggestions"));
             List<String> safety = extractSafetyGuidelines(analysisJson.path("safety"));
 
             return Recommendation.builder()
                     .activityId(activity.getId())
                     .userId(activity.getUserId())
-                    .activityType(activity.getType())
-                    .recommendation(fullAnalysis.toString().trim())
-                    .improvements(improvements)
-                    .suggestions(suggestions)
-                    .safety(safety)
-                    .createdAt(LocalDateTime.now())
-                    .build();
-
+                    .a
         } catch (Exception e) {
-            e.printStackTrace();
-            return createDefaultRecommendation(activity);
-        }
-    }
 
-    private Recommendation createDefaultRecommendation(Activity activity) {
-        return Recommendation.builder()
-                .activityId(activity.getId())
-                .userId(activity.getUserId())
-                .activityType(activity.getType())
-                .recommendation("Unable to generate detailed analysis")
-                .improvements(Collections.singletonList("Continue with your current routine"))
-                .suggestions(Collections.singletonList("Consider consulting a fitness professional"))
-                .safety(Arrays.asList(
-                        "Always warm up before exercise",
-                        "Stay hydrated",
-                        "Listen to your body"
-                ))
-                .createdAt(LocalDateTime.now())
-                .build();
+        }
+        return null;
     }
 
     private List<String> extractSafetyGuidelines(JsonNode safetyNode) {
@@ -99,7 +74,7 @@ public class ActivityAIService {
             safetyNode.forEach(item -> safety.add(item.asText()));
         }
         return safety.isEmpty() ?
-                Collections.singletonList("Follow general safety guidelines") :
+                Collections.singletonList("Follow gerenal safety guidelines"):
                 safety;
     }
 
@@ -109,33 +84,33 @@ public class ActivityAIService {
             suggestionsNode.forEach(suggestion -> {
                 String workout = suggestion.path("workout").asText();
                 String description = suggestion.path("description").asText();
-                suggestions.add(String.format("%s: %s", workout, description));
+                suggestions.add(String.format("%s,%s,%s", workout, description));
             });
         }
         return suggestions.isEmpty() ?
-                Collections.singletonList("No specific suggestions provided") :
+                Collections.singletonList("No apecific suggestions provided"):
                 suggestions;
     }
 
-    private List<String> extractImprovements(JsonNode improvementsNode) {
+    private List<String> extractImprovement(JsonNode improvementsNode) {
         List<String> improvements = new ArrayList<>();
         if (improvementsNode.isArray()) {
             improvementsNode.forEach(improvement -> {
                 String area = improvement.path("area").asText();
                 String detail = improvement.path("recommendation").asText();
-                improvements.add(String.format("%s: %s", area, detail));
+                improvements.add(String.format("%s,%s,%s", area, detail));
             });
         }
         return improvements.isEmpty() ?
-                Collections.singletonList("No specific improvements provided") :
+                Collections.singletonList("No apecific improvements provided"):
                 improvements;
     }
 
     private void addAnalysisSection(StringBuilder fullAnalysis, JsonNode analysisNode, String key, String prefix) {
         if (!analysisNode.path(key).isMissingNode()) {
             fullAnalysis.append(prefix)
-                    .append(analysisNode.path(key).asText())
-                    .append("\n\n");
+            .append(analysisNode.path(key).asText())
+            .append("\n\n");
         }
     }
 
