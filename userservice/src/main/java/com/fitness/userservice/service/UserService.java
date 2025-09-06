@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import javax.management.RuntimeErrorException;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +18,17 @@ public class UserService {
 
     public UserResponse register(RegisterRequest request) {
         if (repository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            User existingUser = repository.findByEmail(request.getEmail());
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(existingUser.getId());
+            userResponse.setEmail(existingUser.getEmail());
+            userResponse.setPassword(existingUser.getPassword());
+            userResponse.setFirstName(existingUser.getFirstName());
+            userResponse.setLastName(existingUser.getLastName());
+            userResponse.setCreatedAt(existingUser.getCreatedAt());
+            userResponse.setUpdatedAt(existingUser.getUpdatedAt());
+
+            return userResponse;
         }
 
         User user = new User();
@@ -61,7 +70,7 @@ public class UserService {
     }
 
     public Boolean existByUserId(String userId) {
-        log.info("calling User Service foe {}", userId);
-        return repository.existsById(userId);
+        log.info("Calling User Service for {}", userId);
+        return repository.existsByKeycloakId (userId);
     }
 }
