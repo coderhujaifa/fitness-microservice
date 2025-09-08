@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07800199-f314-42a9-ace0-ffd57c303d65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/KeycloakUserSyncFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/WebClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/UserResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configserver/src/main/resources/config/ai-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configserver/src/main/resources/config/ai-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activityservice/src/main/java/com/fitness/activityservice/config/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/activityservice/src/main/java/com/fitness/activityservice/config/WebClientConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configserver/src/main/resources/config/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configserver/src/main/resources/config/gateway-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configserver/src/main/resources/config/user-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configserver/src/main/resources/config/user-service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/dto/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/KeycloakUserSyncFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/KeycloakUserSyncFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/WebClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/user/WebClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/dto/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/com/fitness/userservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,6 +172,7 @@
       <workItem from="1757087469306" duration="38000" />
       <workItem from="1757133433709" duration="10007000" />
       <workItem from="1757176142910" duration="118000" />
+      <workItem from="1757306995051" duration="22640000" />
     </task>
     <servers />
   </component>
