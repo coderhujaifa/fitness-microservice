@@ -8,12 +8,14 @@ import { setCredentials } from "./store/authSlice";
 import { Box } from "@mui/material";
 import ActivityForm from "./components/ActivityForm";
 import ActivityDetails from "./components/ActivityDetails";
+import ActivityList from "./components/ActivityList";
+
 
  const ActivitiesPage = () => {
   return (
     <Box  sx={{ p: 2, border: '1px dashed grey' }}>
-      <ActivityForm />
-      <ActivityForm />
+      <ActivityForm onActivitiesAdded = { () => window.location.reload ()}/>
+      <ActivityList/>
     </Box>
   );
  }
