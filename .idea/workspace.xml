@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07800199-f314-42a9-ace0-ffd57c303d65" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activityservice/src/main/java/com/fitness/activityservice/controller/ActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/activityservice/src/main/java/com/fitness/activityservice/controller/ActivityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitness-fronted/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitness-fronted/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitness-fronted/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fitness-fronted/src/components/ActivityForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/src/components/ActivityForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitness-fronted/src/authConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/src/authConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitness-fronted/src/service/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/fitness-fronted/src/service/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/fitness/geteway/CorsConfig.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +166,8 @@
       <workItem from="1757176142910" duration="118000" />
       <workItem from="1757306995051" duration="22640000" />
       <workItem from="1757588870987" duration="4658000" />
+      <workItem from="1757668986531" duration="613000" />
+      <workItem from="1757926422349" duration="5413000" />
     </task>
     <servers />
   </component>
